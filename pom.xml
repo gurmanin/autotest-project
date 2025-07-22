@@ -21,11 +21,23 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <!--для отчета Allure чтобы просматривать запросы и ответы в отчете-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>2.29.1</version>
+        </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.5.5</version>
             <scope>test</scope>
+        </dependency>
+        <!--для отправки API чтобы можно было запускать запросы из командной строки-->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>4.0.0-rc-4</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
