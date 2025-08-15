@@ -1,0 +1,8 @@
+{
+  "name":"Dima",
+  "age":32,
+  "hobby": {
+    "game":"mobile_legends",
+    "programLanguage":"Java"
+  }
+}
