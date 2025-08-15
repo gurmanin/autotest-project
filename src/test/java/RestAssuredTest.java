@@ -1,45 +1,55 @@
 import io.restassured.http.ContentType;
+import net.minidev.json.JSONObject;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
 public class RestAssuredTest {
     @Test
+    public void createUser() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("id", "2222");
+        requestBody.put("usermame", "QA");
+        given()
+                .contentType(ContentType.JSON)
+                .body(requestBody.toString())
+                .when()
+                .post("https://petstore.swagger.io/v2/user")
+                .then()
+                .statusCode(200)
+                .log().all();
+    }
+
+    @Test
     public void getListUsers() {
         given()
                 .when()
-                .get("https://reqres.in/api/users?page=2")
+                .get("https://petstore.swagger.io/v2/user/gurmanin")
                 .then()
-                .statusCode(401)
+                .statusCode(200)
                 .log().all();
     }
-    @Test
-    public void createUser() {
-        given()
-                .body("{\"name\":\"morpheus\",\"job\":\"leader\"}")
-                .when()
-                .post("https://reqres.in/api/users")
-                .then()
-                .statusCode(401)
-                .log().all();
-    }
+
     @Test
     public void updateUser() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("usermame", "QA");
         given()
-                .body("{\"name\":\"morpheus\",\"job\":\"zion resident\"}")
+                .contentType(ContentType.JSON)
+                .body(requestBody.toString())
                 .when()
-                .put("https://reqres.in/api/users/2")
+                .put("https://petstore.swagger.io/v2/user/gurmanin")
                 .then()
-                .statusCode(401)
+                .statusCode(200)
                 .log().all();
     }
     @Test
     public void deleteUser() {
         given()
                 .when()
-                .delete("https://reqres.in/api/users/2")
+                .delete("https://petstore.swagger.io/v2/user/gurmanin")
                 .then()
-                .statusCode(401)
+                .statusCode(200)
                 .log().all();
     }
 
