@@ -1,6 +1,7 @@
 import com.google.gson.JsonElement;
 import io.restassured.http.ContentType;
 import models.ExampleModel;
+import models.ExampleProfileModel;
 import net.minidev.json.JSONObject;
 import org.junit.Test;
 
@@ -62,5 +63,18 @@ public class RestAssuredTest {
     System.out.println(formated);
     String finalJson = Utils.serialize(formated);
     System.out.println(finalJson);
+    }
+
+    public static void main(String[] args) {
+        ExampleProfileModel profileIvan = new ExampleProfileModel(20, "Ivan","mobile", "Java");
+        System.out.println(profileIvan);
+        profileIvan.age = 20;
+        System.out.println(profileIvan);
+    }
+
+    @Test
+    public void createProfile(){
+        ExampleProfileModel profileDenis = new ExampleProfileModel(10,"Denis,","pc","C++");
+        System.out.println(profileDenis);
     }
 }
