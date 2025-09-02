@@ -1,28 +1,29 @@
 package models;
 
-public class ExampleProfileModel {
+public class InvalidProfileModel {
 
     public int age;
     public String name;
     public String game;
     public String language;
 
-    public ExampleProfileModel(int age, String name, String game, String language) {
-        this.age = age;
+    public InvalidProfileModel(int age, String name, String game, String language) {
+
         this.name = name;
         this.game = game;
         this.language = language;
 
-        if (age <= 30) {
-            this.age = 30;
-        } else {
-            this.age = age;
+        if(age<=30){
+            System.out.println("Ошибка: Возраст должен быть не менее 30 лет");
+        }else{
+            this.age=age;
+
         }
     }
 
     @Override
     public String toString() {
-        return "ExampleProfileModel{" +
+        return "InvalidProfileModel{" +
                 "age=" + age +
                 ", name='" + name + '\'' +
                 ", game='" + game + '\'' +

@@ -1,7 +1,9 @@
 import com.google.gson.JsonElement;
 import io.restassured.http.ContentType;
 import models.ExampleModel;
-import models.ExampleProfileModel;
+import models.InvalidProfileModel;
+import models.InvalidProfileModel;
+import models.ValidProfileModel;
 import net.minidev.json.JSONObject;
 import org.junit.Test;
 
@@ -56,7 +58,7 @@ public class RestAssuredTest {
                 .log().all();
     }
 
-@Test
+    @Test
     public void test(){
     JsonElement json = Utils.readJsonFile("src/test/resources/example.json");
     ExampleModel formated = Utils.deserialize(json.getAsJsonObject().toString(), ExampleModel.class);
@@ -65,16 +67,26 @@ public class RestAssuredTest {
     System.out.println(finalJson);
     }
 
-    public static void main(String[] args) {
-        ExampleProfileModel profileIvan = new ExampleProfileModel(20, "Ivan","mobile", "Java");
-        System.out.println(profileIvan);
-        profileIvan.age = 20;
-        System.out.println(profileIvan);
+    //Пример теста когда не будет выполняться условие прописанное в классе InvalidProfileModel для поля age
+    @Test
+    public void createProfileDenis(){
+        InvalidProfileModel profileDenis = new InvalidProfileModel(35,"Denis,","pc","C++");
+        System.out.println(profileDenis);
+        profileDenis.age = 20;
+        System.out.println(profileDenis);
     }
 
+    //Пример теста когда  будет выполняться условие прописанное в классе ValidProfileModel для поля age, использование геттеров и сеттеров
     @Test
-    public void createProfile(){
-        ExampleProfileModel profileDenis = new ExampleProfileModel(10,"Denis,","pc","C++");
-        System.out.println(profileDenis);
+    public void createProfileAnton(){
+        ValidProfileModel profileAnton = new ValidProfileModel();
+        profileAnton.setAge(35);
+        profileAnton.setName("Anton");
+        profileAnton.setLanguage("Java");
+        profileAnton.setGame("CS");
+        System.out.println("Меня зовут"+ " " + profileAnton.getName()+","+" "+"мне"+" "+profileAnton.getAge()+" "+"лет,"+" я изучаю"+" "+profileAnton.getLanguage()+" и играю в "+profileAnton.getGame());
+        profileAnton.setName("");
+        System.out.println(profileAnton);
+
     }
 }
